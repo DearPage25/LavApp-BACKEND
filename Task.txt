@@ -1,0 +1,25 @@
+DB 	
+LOGIN
+    *REGISTER Y MANIPULACIÓN DE DATA
+        **CREAR UN USUARIO.
+            entrada de datos (email, username, password [encriptada].........)
+        **MODIFICAR ( USERNAME, IS_EMPLOYEE, IS_ADMIN).
+    
+    *LOGIN Y AUTORIZACIONES.
+        **Login con Email y password.
+            devuelve un token si es correcto.
+            si no devuelve un error(message).
+    
+    *OJO, TODOS los servicios requieren de verificar el token
+    y otros pocos de verificar si es admin.
+
+
+CRUD
+
+    *REPORTES
+    *SERVICIOS
+    *PAGO
+    *FACTURA
+
+PERFIL 
+CONFIGURACIÓN
