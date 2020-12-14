@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 
-export const  sequelize = await new Sequelize(
+const  sequelize = new Sequelize(
+    
     'LavApp',
     'DearPage25',
     'Odalmi16',
@@ -17,3 +18,8 @@ export const  sequelize = await new Sequelize(
         logging: false
     }
 );
+
+
+
+
+module.exports = sequelize;
