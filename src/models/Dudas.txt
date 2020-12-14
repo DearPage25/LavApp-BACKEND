@@ -1,0 +1,6 @@
+ 
+ TODO: - User > Bill: Hay dos relaciones (id_user > employee, id_user > customer)
+ TODO: - service_type > billDetail: bill_detail deberia apuntar a services-module. 
+ TODO: - billDetail: tiene un campo service_type_price [ya el precio se extrae del model service-type];
+ TODO: - billDetail: creo que deberia hacer referencia a Services, y no a service_type;
+ 

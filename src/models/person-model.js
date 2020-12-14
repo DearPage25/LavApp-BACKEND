@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
-
+import { sequelize } from '../database/database';
+import User from './user-model';
 const Person = sequelize.define('person', {
     id_person: {
         type: Sequelize.BIGINT,
@@ -22,5 +22,10 @@ const Person = sequelize.define('person', {
         type: Sequelize.TEXT
     },
 });
+
+Person.hasMany(User, { foreignKey: 'id_person', sourceKey: 'id_person' });
+User.belongsTo(Person, { foreignKey: 'id_person', sourceKey: 'id_person' });
+
+
 
 module.exports = Person;

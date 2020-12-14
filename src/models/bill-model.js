@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import {sequelize} from '../database/database'
 
+import billDetail from './bill-detail-model';
+
 const Bill = sequelize.define('bill', {
     id_bill: {
         type: Sequelize.BIGINT,
@@ -30,6 +32,10 @@ const Bill = sequelize.define('bill', {
         type: Sequelize.NUMBER
     }
 });
+
+Bill.hasMany(billDetail, {foreignKey: 'id_bill_detail', sourceKey:'id_bill'});
+billDetail.belongsTo(Bill, {foreignKey: 'id_bill_detail', sourceKey:'id_bill'});
+
 
 
 module.exports = Bill;

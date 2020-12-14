@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import {sequelize} from '../database/database';
-
+import Rfid from './RFID-model';
 const billDetail = sequelize.define('bill_detail', {
     id_bill_detail: {
         type: Sequelize.BIGINT,
@@ -30,4 +30,6 @@ const billDetail = sequelize.define('bill_detail', {
     }, 
 });
 
+billDetail.hasMany(Rfid,   {foreignKey: 'id_bill_detail', source: 'id_bill_detail'} )
+Rfid.belongsTo(billDetail, {foreignKey: 'id_bill_detail', source: 'id_bill_detail'} )
 module.exports = billDetail;

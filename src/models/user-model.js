@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import {sequelize} from '../database/database';
 
+import Bill from './bill-model'
+import Discount from './discount-model'
 const User = sequelize.define('user', {
     id_user: {
         type: Sequelize.BIGINT,
@@ -33,5 +35,15 @@ const User = sequelize.define('user', {
 }, {
     timestamps: false
 });
+
+//TODO: DOS RELACIONES A UNA MISMA TABLA [X]
+User.hasMany(Bill, {foreignKey: 'customer', sourceKey: 'id_user'});
+Bill.belongsTo(User, {foreignKey: 'customer', sourceKey: 'id_user'});
+User.hasMany(Bill, {foreignKey: 'employee', sourceKey: 'id_user'});
+Bill.belongsTo(User, {foreignKey: 'employee', sourceKey: 'id_user'});
+
+
+User.hasMany(Discount, {foreignKey: 'id_user', sourceKey: 'id_user'});
+Discount.belongsTo(User, {foreignKey: 'id_user', sourceKey: 'id_user'});
 
 module.exports = User;
