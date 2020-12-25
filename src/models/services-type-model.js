@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 
 import billDetail from './bill-detail-model'
 import Discount from './discount-model';
@@ -21,8 +21,10 @@ const ServicesType = sequelize.define('service_type', {
         type: Sequelize.SMALLINT
     }
 },{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
     timestamps: false
-
 });
 
 //TODO: [x]

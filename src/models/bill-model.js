@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database'
+import sequelize from '../database/database'
 
 import billDetail from './bill-detail-model';
 
@@ -31,6 +31,11 @@ const Bill = sequelize.define('bill', {
     itbis: {
         type: Sequelize.NUMBER
     }
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
 
 Bill.hasMany(billDetail, {foreignKey: 'id_bill_detail', sourceKey:'id_bill'});

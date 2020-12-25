@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../database/database';
+import sequelize from '../database/database';
 
 import User from './user-model';
 import Rfid from './RFID-model';
@@ -15,10 +15,12 @@ const Departament = sequelize.define('departament', {
     departament_descr: {
         type: Sequelize.TEXT
     }
-}, {
-    timestamps: false,
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
-
 Departament.hasMany(User, { foreignKey: 'id_department', sourceKey: 'id_departament' });
 User.belongsTo(Departament, { foreignKey: 'id_department', sourceKey: 'id_departament' });
 

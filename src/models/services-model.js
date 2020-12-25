@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../database/database';
+import sequelize from '../database/database';
 import ServicesType from './services-type-model';
 const Services = sequelize.define('services', {
     id_service: {
@@ -12,7 +12,10 @@ const Services = sequelize.define('services', {
     description: {
         type: Sequelize.TEXT,
     },
-}, {
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
     timestamps: false
 });
 

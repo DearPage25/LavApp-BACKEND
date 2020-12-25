@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 import Rfid from './RFID-model';
 const billDetail = sequelize.define('bill_detail', {
     id_bill_detail: {
@@ -28,6 +28,11 @@ const billDetail = sequelize.define('bill_detail', {
     proccessing_time: {
         type: Sequelize.DATE,
     }, 
+}, {
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
 
 billDetail.hasMany(Rfid,   {foreignKey: 'id_bill_detail', source: 'id_bill_detail'} )

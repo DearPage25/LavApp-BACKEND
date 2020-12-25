@@ -1,30 +1,41 @@
 import Sequelize from 'sequelize';
-import { sequelize } from '../database/database';
+import sequelize from '../database/database';
 import User from './user-model';
-const Person = sequelize.define('person', {
-    id_person: {
+const Person = sequelize.define("PERSON", {
+  
+    ID_PERSON: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+
     },
-    first_name: {
+    FIRST_NAME: {
         type: Sequelize.TEXT,
     },
-    last_name: {
+    LAST_NAME: {
         type: Sequelize.TEXT,
     },
-    birth_date: {
+    BIRTH_DATE: {
         type: Sequelize.DATE,
     },
-    tel_number: {
+    TEL_NUMBER: {
         type: Sequelize.TEXT
     },
-    address: {
+    ADDRESS: {
         type: Sequelize.TEXT
     },
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
 
-Person.hasMany(User, { foreignKey: 'id_person', sourceKey: 'id_person' });
-User.belongsTo(Person, { foreignKey: 'id_person', sourceKey: 'id_person' });
+// Person.sync({force:true});
+
+Person.hasMany(User, { foreignKey: 'ID_PERSON', sourceKey: 'ID_PERSON' });
+User.belongsTo(Person, { foreignKey: 'ID_PERSON', sourceKey: 'ID_PERSON' });
 
 
 

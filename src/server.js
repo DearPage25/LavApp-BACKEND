@@ -1,14 +1,14 @@
 import express, {json} from 'express';
+const app = express();
 
 import morgan from 'morgan';
-import usuarioRouter from './routers/usuario-routers';
+import router from './routers/index-routers';
 
-const app = express();
 
 app.use(morgan('dev'));
 app.use(json());
 
 //rutas
-app.use('/api/usuario', usuarioRouter);
+app.use('/api', router);
 
 export default app;

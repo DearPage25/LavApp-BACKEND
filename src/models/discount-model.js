@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 
 const Discount = sequelize.define('discount', {
     id_discount: {
@@ -22,6 +22,11 @@ const Discount = sequelize.define('discount', {
         type: Sequelize.TEXT
     }
 
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
 
 module.exports = Discount;

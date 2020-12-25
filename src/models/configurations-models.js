@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 
 const Config = sequelize.define('configurations', {
     id_configuration: {
@@ -10,8 +10,10 @@ const Config = sequelize.define('configurations', {
         type: Sequelize.SMALLINT,
     },
 
-}, {
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
     timestamps: false
 });
-
 module.exports = Config;

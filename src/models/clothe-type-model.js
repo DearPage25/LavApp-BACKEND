@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 import billDetail from './bill-detail-model';
 const ClotheType =  sequelize.define('clothe_type', {
     id_clothe_type: {
@@ -13,7 +13,10 @@ const ClotheType =  sequelize.define('clothe_type', {
         type: Sequelize.TEXT,
     },
 
-}, {
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
     timestamps: false
 });
 

@@ -1,20 +1,24 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 
 import Bill from './bill-model'
 import Discount from './discount-model'
-const User = sequelize.define('user', {
-    id_user: {
+
+
+const User = sequelize.define("USERS", {
+    ID_USER: {
         type: Sequelize.BIGINT,
-        primarykey: true
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
     },
-    email: {
+    EMAIL: {
         type: Sequelize.TEXT
     },
-    username: {
+    USERNAME: {
         type: Sequelize.TEXT
     },
-    password: {
+    PASSWORD: {
         type: Sequelize.TEXT
     },
     is_employee: {
@@ -26,24 +30,26 @@ const User = sequelize.define('user', {
     is_admin:{
         type: Sequelize.BOOLEAN
     },
-    id_person:{
+    ID_PERSON:{
         type: Sequelize.BIGINT
     },
     id_department: {
         type: Sequelize.BIGINT
     },
 }, {
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
     timestamps: false
 });
+// TODO: DOS RELACIONES A UNA MISMA TABLA [X]
+User.hasMany(Bill, {foreignKey: 'customer', sourceKey: 'ID_USER'});
+Bill.belongsTo(User, {foreignKey: 'customer', sourceKey: 'ID_USER'});
+User.hasMany(Bill, {foreignKey: 'employee', sourceKey: 'ID_USER'});
+Bill.belongsTo(User, {foreignKey: 'employee', sourceKey: 'ID_USER'});
 
-//TODO: DOS RELACIONES A UNA MISMA TABLA [X]
-User.hasMany(Bill, {foreignKey: 'customer', sourceKey: 'id_user'});
-Bill.belongsTo(User, {foreignKey: 'customer', sourceKey: 'id_user'});
-User.hasMany(Bill, {foreignKey: 'employee', sourceKey: 'id_user'});
-Bill.belongsTo(User, {foreignKey: 'employee', sourceKey: 'id_user'});
 
+User.hasMany(Discount, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});
+Discount.belongsTo(User, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});
 
-User.hasMany(Discount, {foreignKey: 'id_user', sourceKey: 'id_user'});
-Discount.belongsTo(User, {foreignKey: 'id_user', sourceKey: 'id_user'});
-
-module.exports = User;
+export default User;

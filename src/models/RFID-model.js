@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import {sequelize} from '../database/database';
+import sequelize from '../database/database';
 
 
 const Rfid = sequelize.define('rfid', {
@@ -23,7 +23,10 @@ const Rfid = sequelize.define('rfid', {
         type: Sequelize.DATE
     }
 
-
+},{
+    schema: "LavApp Schema",
+    tableName: "PERSON",
+    freezeTableName: true,
+    timestamps: false
 });
-
 module.exports = Rfid;
