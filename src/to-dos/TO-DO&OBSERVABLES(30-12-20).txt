@@ -1,0 +1,35 @@
+
+• DIA: 30/12/2020
+
+- Terminear el crud de usuarios. ♦
+    observacines:
+        en usuario necesitamos un campo que defina si esta activo.
+
+- Arreglar la entra de datos de las rutas. ♦
+
+• DIA: 02/01/2021
+
+- Incriptación del password ♦
+    observacines:
+        se incripto de una sola via con la librería bcrypt.
+    Ojo:
+        aun falta desencriptarla con el login.
+
+• DIA: 07/01/2021 ♦
+- Crear los token
+
+• DIA: 11/01/2021 ♦ 
+- Crear los servicios
+
+• DIA: 14/01/2021 ♦
+- Crear el controlador de servicios
+- Agregar funcionalidad al controlador departamental
+- Se agregaron los cambios resientes a usuarios.
+
+• DIA: 18/01/2021 ♦
+- Crear update y delete a servicios y departamentos
+
+
+
+
+

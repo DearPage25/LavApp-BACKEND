@@ -27,7 +27,6 @@ const ServicesType = sequelize.define('service_type', {
     timestamps: false
 });
 
-//TODO: [x]
 ServicesType.hasMany(billDetail,{foreignKey: 'id_service_type', sourceKey: 'id_service_type'});
 billDetail.belongsTo(ServicesType,{foreignKey: 'id_service_type', sourceKey: 'id_service_type'});
 

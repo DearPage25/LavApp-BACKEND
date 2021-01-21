@@ -1,3 +1,4 @@
+require('./config/config.env');
 import express, {json} from 'express';
 const app = express();
 

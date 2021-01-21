@@ -4,27 +4,28 @@ import sequelize from '../database/database';
 import User from './user-model';
 import Rfid from './RFID-model';
 
-const Departament = sequelize.define('departament', {
-    id_departament: {
+const Departament = sequelize.define("DEPARTMENT", {
+    ID_DEPARTMENT: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
     },
-    departament_name: {
+    DEPARTMENT_NAME: {
         type: Sequelize.TEXT,
     },
-    departament_descr: {
+    DEPARTMENT_DESCR: {
         type: Sequelize.TEXT
     }
 },{
     schema: "LavApp Schema",
-    tableName: "PERSON",
     freezeTableName: true,
     timestamps: false
 });
-Departament.hasMany(User, { foreignKey: 'id_department', sourceKey: 'id_departament' });
-User.belongsTo(Departament, { foreignKey: 'id_department', sourceKey: 'id_departament' });
+Departament.hasMany(User, { foreignKey: 'ID_DEPARTMENT', sourceKey: 'ID_DEPARTMENT' });
+User.belongsTo(Departament, { foreignKey: 'ID_DEPARTMENT', sourceKey: 'ID_DEPARTMENT' });
 
-Departament.hasMany(Rfid, { foreignKey: 'id_current_detp', sourceKey: 'id_departament' });
-Rfid.belongsTo(Departament, { foreignKey: 'id_current_detp', sourceKey: 'id_departament' });
+Departament.hasMany(Rfid, { foreignKey: 'ID_CURRENTE_DETP', sourceKey: 'ID_DEPARTMENT' });
+Rfid.belongsTo(Departament, { foreignKey: 'ID_CURRENTE_DETP', sourceKey: 'ID_DEPARTMENT' });
 
 module.exports = Departament;

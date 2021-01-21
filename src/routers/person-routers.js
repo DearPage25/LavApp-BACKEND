@@ -1,10 +1,10 @@
 import {Router} from 'express';
 const router = Router();
 import {getOnePerson, getAllPerson, createPerson, updatePerson} from '../controllers/person-controller';
-router.get('/usuario/person/:ID_PERSON', getOnePerson);
-router.get('/usuario/person', getAllPerson);
-router.post('/usuario/person',createPerson );
-router.put('/usuario/person/:ID_PERSON', updatePerson);
+router.get('/person/:id_person', getOnePerson);
+router.get('/person', getAllPerson);
+router.post('/person',createPerson );
+router.put('/person/:id_person', updatePerson);
 
 
 

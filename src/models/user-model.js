@@ -21,33 +21,39 @@ const User = sequelize.define("USERS", {
     PASSWORD: {
         type: Sequelize.TEXT
     },
-    is_employee: {
+    IS_EMPLOYEE: {
         type: Sequelize.BOOLEAN
     },
-    verified:{
+    VERIFIED:{
         type: Sequelize.BOOLEAN
     },
-    is_admin:{
+    IS_ADMIN:{
         type: Sequelize.BOOLEAN
     },
     ID_PERSON:{
         type: Sequelize.BIGINT
     },
-    id_department: {
+    ID_DEPARTMENT: {
         type: Sequelize.BIGINT
     },
+    is_active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+    }
 }, {
     schema: "LavApp Schema",
-    tableName: "PERSON",
     freezeTableName: true,
     timestamps: false
 });
-// TODO: DOS RELACIONES A UNA MISMA TABLA [X]
+User.prototype.toJSON =  function () {
+    var values = Object.assign({}, this.get());
+  
+    delete values.PASSWORD;
+    return values;
+}
+
 User.hasMany(Bill, {foreignKey: 'customer', sourceKey: 'ID_USER'});
 Bill.belongsTo(User, {foreignKey: 'customer', sourceKey: 'ID_USER'});
-User.hasMany(Bill, {foreignKey: 'employee', sourceKey: 'ID_USER'});
-Bill.belongsTo(User, {foreignKey: 'employee', sourceKey: 'ID_USER'});
-
 
 User.hasMany(Discount, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});
 Discount.belongsTo(User, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});
