@@ -20,6 +20,10 @@ const Discount = sequelize.define('discount', {
     },
     notes: {
         type: Sequelize.TEXT
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
     }
 
 },{

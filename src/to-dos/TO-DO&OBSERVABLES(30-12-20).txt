@@ -29,6 +29,16 @@
 • DIA: 18/01/2021 ♦
 - Crear update y delete a servicios y departamentos
 
+• DIA: 03/02/2021 ♦ 
+    Notas:
+- los campos fechas van Dato crudo.
+- deliveri in NO va.
+- voler a crear employee.
+- los estados de true and false.
+
+TODO: FALTA
+ - los DEL
+ 
 
 
 

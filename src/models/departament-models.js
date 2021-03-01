@@ -25,7 +25,7 @@ const Departament = sequelize.define("DEPARTMENT", {
 Departament.hasMany(User, { foreignKey: 'ID_DEPARTMENT', sourceKey: 'ID_DEPARTMENT' });
 User.belongsTo(Departament, { foreignKey: 'ID_DEPARTMENT', sourceKey: 'ID_DEPARTMENT' });
 
-Departament.hasMany(Rfid, { foreignKey: 'ID_CURRENTE_DETP', sourceKey: 'ID_DEPARTMENT' });
-Rfid.belongsTo(Departament, { foreignKey: 'ID_CURRENTE_DETP', sourceKey: 'ID_DEPARTMENT' });
+Departament.hasMany(Rfid, { foreignKey: 'ID_CURRENT_DETP', sourceKey: 'ID_DEPARTMENT' });
+Rfid.belongsTo(Departament, { foreignKey: 'ID_DEPARTMENT', sourceKey: 'ID_CURRENT_DETP' });
 
 module.exports = Departament;

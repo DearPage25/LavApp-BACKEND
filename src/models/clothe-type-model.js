@@ -1,26 +1,32 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize from 'sequelize';
 import sequelize from '../database/database';
 import billDetail from './bill-detail-model';
-const ClotheType =  sequelize.define('clothe_type', {
-    id_clothe_type: {
+const ClotheType = sequelize.define('clothe_type', {
+    ID_CLOTHE_TYPE: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
     },
-    clothe_type: {
+    CLOTHE_TYPE: {
         type: Sequelize.TEXT,
     },
-    notes: {
+    NOTES: {
         type: Sequelize.TEXT,
     },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
+    }
 
-},{
+}, {
     schema: "LavApp Schema",
-    tableName: "PERSON",
+    tableName: "CLOTHE_TYPE",
     freezeTableName: true,
     timestamps: false
 });
 
-ClotheType.hasMany(billDetail, { foreignKey: 'id_clothe_type', suorceKey: 'id_clothe_type'});
-billDetail.belongsTo(ClotheType, { foreignKey: 'id_clothe_type', suorceKey: 'id_clothe_type'});
+ClotheType.hasMany(billDetail, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
+billDetail.belongsTo(ClotheType, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
 
 module.exports = ClotheType;

@@ -3,36 +3,42 @@ import sequelize from '../database/database';
 
 import billDetail from './bill-detail-model'
 import Discount from './discount-model';
-const ServicesType = sequelize.define('service_type', {
-    id_service_type: {
+const ServicesType = sequelize.define("SERVICE_TYPE", {
+    ID_SERVICE_TYPE: {
         type: Sequelize.BIGINT,
-        primarykey: true
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
     },
-    type: {
+    TYPE: {
         type: Sequelize.TEXT,
     },
-    id_service: {
+    ID_SERVICE: {
         type: Sequelize.BIGINT
     },
-    price: {
+    PRICE: {
         type: Sequelize.NUMBER
     },
-    discount: {
+    DISCOUNT: {
         type: Sequelize.SMALLINT
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
     }
+    
 },{
     schema: "LavApp Schema",
-    tableName: "PERSON",
     freezeTableName: true,
     timestamps: false
 });
 
-ServicesType.hasMany(billDetail,{foreignKey: 'id_service_type', sourceKey: 'id_service_type'});
-billDetail.belongsTo(ServicesType,{foreignKey: 'id_service_type', sourceKey: 'id_service_type'});
+ServicesType.hasMany(billDetail,{foreignKey: 'ID_SERVICE_TYPE', sourceKey: 'ID_SERVICE_TYPE'});
+billDetail.belongsTo(ServicesType,{foreignKey: 'ID_SERVICE_TYPE', sourceKey: 'ID_SERVICE_TYPE'});
 
 
-ServicesType.hasMany(Discount, {foreignKey:'id_service_type', sourceKey:'id_service_type'});
-Discount.belongsTo(ServicesType, {foreignKey:'id_service_type', sourceKey:'id_service_type'});
+ServicesType.hasMany(Discount, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
+Discount.belongsTo(ServicesType, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
 
 
 

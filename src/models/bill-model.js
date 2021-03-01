@@ -3,43 +3,46 @@ import sequelize from '../database/database'
 
 import billDetail from './bill-detail-model';
 
-const Bill = sequelize.define('bill', {
-    id_bill: {
+const Bill = sequelize.define("BILL", {
+    ID_BILL: {
         type: Sequelize.BIGINT,
-        primarykey: true
+        primaryKey: true,
+        unique:true,
+        autoIncrement: true,
     },
-    customer: {
-        type: Sequelize.BIGINT,
-
-    },
-    employee: {
+    CUSTOMER: {
         type: Sequelize.BIGINT,
 
     },
-    current_date: {
+    CURRENT_DATE: {
         type: Sequelize.DATE
     },
-    date_deliver: {
+    DATE_DELIVER: {
         type: Sequelize.DATE,
     },
-    sub_total: {
+    SUB_TOTAL: {
         type: Sequelize.NUMBER,
     },
-    discount: {
+    DISCOUNT: {
         type: Sequelize.NUMBER,
     },
-    itbis: {
+    ITBIS: {
         type: Sequelize.NUMBER
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
+    }, employee: {
+        type: Sequelize.INTEGER,
     }
 },{
     schema: "LavApp Schema",
-    tableName: "PERSON",
     freezeTableName: true,
-    timestamps: false
+    timestamps: false,
 });
 
-Bill.hasMany(billDetail, {foreignKey: 'id_bill_detail', sourceKey:'id_bill'});
-billDetail.belongsTo(Bill, {foreignKey: 'id_bill_detail', sourceKey:'id_bill'});
+Bill.hasMany(billDetail, {foreignKey: 'ID_BILL_DETAIL', sourceKey:'ID_BILL'});
+billDetail.belongsTo(Bill, {foreignKey: 'ID_BILL_DETAIL', sourceKey:'ID_BILL'});
 
 
 

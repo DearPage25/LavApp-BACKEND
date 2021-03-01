@@ -31,12 +31,12 @@ export async function createDepartment(req, res) {
 
 export async function getAllDepartment(req, res) {
 
-  let departments = await Department.findAll();
   try {
+    let departments = await Department.findAll();
     if (!departments) {
       return res.status(400).json({
         ok: false,
-        message: "upps! Departmentno found "
+        message: "upps! Something goes wrong",
       })
     }
     res.status(200).json({
@@ -85,42 +85,6 @@ export async function getOneDepartment(req, res) {
 
 }
 
-export async function DeleteOneDepartment(req, res) {
-
-  let { id_department } = req.params;
-  // await Department.findOne({
-  //   where: {
-  //     ID_DEPARTMENT: id_department
-  //   }
-  // });
-  try {
-    let deleteoneDepartment = await Department.destroy({
-      where: {
-        ID_DEPARTMENT: id_department
-      }
-    })
-
-    if (!deleteoneDepartment) {
-      return res.status(400).json({
-        ok: false,
-        message: "Uups! Department no Deleted!"
-      });
-    }
-
-    res.status(200).json({
-      ok: true,
-      data: deleteoneDepartment
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      message: "Ohh Ohhh! something goes wrong"
-    });
-  }
-
-
-}
 
 export async function updateOneDepartment(req, res) {
   const { id_department } = req.params
@@ -163,3 +127,40 @@ export async function updateOneDepartment(req, res) {
   
 }
 
+
+export async function DeleteOneDepartment(req, res) {
+
+  let { id_department } = req.params;
+  
+  try {
+    let deleteoneDepartment = await Department.update({
+      active: false
+    },{
+      returning: true,
+      where: {
+        ID_DEPARTMENT: id_department,
+      },
+
+    });
+
+    if (!deleteoneDepartment) {
+      return res.status(400).json({
+        ok: false,
+        message: "Uups! Department no Deleted!"
+      });
+    }
+
+    res.status(200).json({
+      ok: true,
+      data: deleteoneDepartment
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      message: "Ohh Ohhh! something goes wrong"
+    });
+  }
+
+
+}

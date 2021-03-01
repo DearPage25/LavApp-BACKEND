@@ -6,6 +6,8 @@ const Services = sequelize.define('SERVICES', {
         type: Sequelize.BIGINT,
         primaryKey: true,
         unique: true,
+        //TODO: autoIncrement no esta, asi 
+        // las compañias pueden crear su propia codificacion
     },
     SERVICE: {
         type: Sequelize.TEXT,

@@ -8,8 +8,12 @@ const Config = sequelize.define('configurations', {
     },
     itbis: {
         type: Sequelize.SMALLINT,
-    },
-
+    }
+    ,
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
+    }
 },{
     schema: "LavApp Schema",
     tableName: "PERSON",

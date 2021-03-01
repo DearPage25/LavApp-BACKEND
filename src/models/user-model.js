@@ -40,6 +40,16 @@ const User = sequelize.define("USERS", {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
     }
+    ,
+    ACTIVE: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
+    },
+    ROLE: {
+        type: Sequelize.TEXT,
+        defaultValue: "CL",
+
+    }
 }, {
     schema: "LavApp Schema",
     freezeTableName: true,
@@ -52,8 +62,12 @@ User.prototype.toJSON =  function () {
     return values;
 }
 
-User.hasMany(Bill, {foreignKey: 'customer', sourceKey: 'ID_USER'});
-Bill.belongsTo(User, {foreignKey: 'customer', sourceKey: 'ID_USER'});
+User.hasMany(Bill, {foreignKey: 'CUSTOMER', sourceKey: 'ID_USER'});
+Bill.belongsTo(User, {foreignKey: 'CUSTOMER', sourceKey: 'ID_USER'});
+
+
+User.hasMany(Bill, {foreignKey: 'employee', sourceKey: 'ID_USER'});
+Bill.belongsTo(User, {foreignKey: 'employee', sourceKey: 'ID_USER'});
 
 User.hasMany(Discount, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});
 Discount.belongsTo(User, {foreignKey: 'ID_USER', sourceKey: 'ID_USER'});

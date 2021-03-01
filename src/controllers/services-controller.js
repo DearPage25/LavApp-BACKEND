@@ -121,7 +121,7 @@ export async function updateService(req, res) {
         });
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             ok: false,
             message: 'Oh ooohhh! Somethig goes wrong!'
         })
@@ -132,10 +132,13 @@ export async function updateService(req, res) {
 export async function deleteService(req, res) {
     const { id_service } = req.params
     try {
-        let destroyServie = await Service.destroy({
+        let destroyServie = await Service.update({
+            active: false,
+        },{
+            returning: true,
             where: {
-                ID_SERVICE: id_service
-            }
+                ID_SERVICE: id_service,
+            },
         });
 
         if (!destroyServie) {
@@ -150,11 +153,11 @@ export async function deleteService(req, res) {
         });
 
     } catch (error) {
-        res.status(500).json({
+        console.log(error);
+        return res.status(500).json({
             ok: false,
             message: 'Oh ooohhh! Somethig goes wrong!'
         })
-        console.log(error);
     }
 
 

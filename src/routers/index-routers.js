@@ -1,12 +1,13 @@
 import express from 'express';
 const app = express();
-import userRouter from './user-routers';
-import personRouter from './person-routers';
-import departament from './departament-routes'
-import services from './services-routers';
-app.use(userRouter);
-app.use(personRouter);
-app.use(departament);
-app.use(services);
 
+app.use(require ('./user-routers'));
+app.use(require ('./person-routers'));
+app.use(require ('./departament-routers'));
+app.use(require('./services-routers'));
+app.use(require('./clothe-type-routers'));
+app.use(require('./RFID-routers'));
+app.use(require('./bill-routers'));
+app.use(require('./bill-detail-routers'));
+app.use(require('./services-type-routers'));
 module.exports = app;

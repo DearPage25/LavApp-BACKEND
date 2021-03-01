@@ -1,40 +1,46 @@
 import Sequelize from 'sequelize';
 import sequelize from '../database/database';
 import Rfid from './RFID-model';
-const billDetail = sequelize.define('bill_detail', {
-    id_bill_detail: {
+const billDetail = sequelize.define('BILL_DETAIL', {
+    ID_BILL_DETAIL: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
     },
-    id_bill: {
+    ID_BILL: {
         type: Sequelize.BIGINT,
     },
-    id_service_type: {
+    ID_SERVICE_TYPE: {
         type: Sequelize.BIGINT,
     },
-    service_type_price: {
+    SERVICE_TYPE_PRICE: {
         type: Sequelize.NUMBER,
     },
-    id_clothe_type: {
+    ID_CLOTHE_TYPE: {
         type: Sequelize.BIGINT,
     },
-    current_dept:{
+    CURRENT_DEPT:{
         type: Sequelize.BIGINT,
     },
-    last_update: {
+    LAST_UPDATE: {
         type: Sequelize.DATE,
     },
 
-    proccessing_time: {
+    PROCESSING_TIME: {
         type: Sequelize.DATE,
-    }, 
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
+    }
 }, {
     schema: "LavApp Schema",
-    tableName: "PERSON",
+    tableName: "BILL_DETAIL",
     freezeTableName: true,
     timestamps: false
 });
 
-billDetail.hasMany(Rfid,   {foreignKey: 'id_bill_detail', source: 'id_bill_detail'} )
-Rfid.belongsTo(billDetail, {foreignKey: 'id_bill_detail', source: 'id_bill_detail'} )
+billDetail.hasMany(Rfid,   {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
+Rfid.belongsTo(billDetail, {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
 module.exports = billDetail;

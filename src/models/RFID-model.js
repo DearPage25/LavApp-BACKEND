@@ -2,30 +2,36 @@ import Sequelize from 'sequelize';
 import sequelize from '../database/database';
 
 
-const Rfid = sequelize.define('rfid', {
-    id_rfid: {
+const Rfid = sequelize.define("RFID", {
+    ID_RFID: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true
     },
-    date: {
+    DATE: {
         type: Sequelize.DATE,
     },
-    id_current_detp: {
+    ID_CURRENT_DETP: {
         type: Sequelize.BIGINT,
     },
-    is_active: {
+    IS_ACTIVE: {
         type: Sequelize.BOOLEAN,
+        defaultValue: true,
     },
-    id_bill_detail: {
+    ID_BILL_DETAIL: {
         type: Sequelize.BIGINT,
     },
-    time: {
+    TIME: {
         type: Sequelize.DATE
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,   
     }
 
 },{
     schema: "LavApp Schema",
-    tableName: "PERSON",
     freezeTableName: true,
     timestamps: false
 });

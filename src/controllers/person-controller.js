@@ -10,7 +10,7 @@ export async function getOnePerson(req, res) {
     });
 
     if (!onePerson) {
-      res.status(400).json({
+      return res.status(400).json({
         ok: false,
         message: "Ups! Something goes wrong!",
       });
@@ -21,7 +21,7 @@ export async function getOnePerson(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       ok: false,
       message: "Uuppssss!! Something goes wrong!",
     });
@@ -29,13 +29,13 @@ export async function getOnePerson(req, res) {
 }
 
 export async function getAllPerson(req, res) {
-  const persons = await Person.findAll();
 
   try {
+    const persons = await Person.findAll();
     if (!persons) {
       return res.status(400).json({
         ok: false,
-        message: "Oh! Ohhh!! Something goes wrong!",
+        message: "Uuppssss!! Something goes wrong!",
       });
     }
     res.status(200).json({
@@ -44,16 +44,16 @@ export async function getAllPerson(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       ok: false,
-      message: "Uuppssss!! Something goes wrong!",
+      message: "Oh! Ohhh!! Something goes wrong!",
     });
   }
 }
 
 export async function createPerson(req, res) {
   const { first_name, last_name, birth_date, tel_number, address } = req.body;
-
+  birth_date = Date.parse(birth_date);
   try {
     let newPerson = await Person.create({
       FIRST_NAME: first_name,
@@ -65,30 +65,31 @@ export async function createPerson(req, res) {
 
     await newPerson.save();
 
-    if (newPerson) {
-      return res.status(200).json({
-        ok: true,
-        data: newPerson,
+    if (!newPerson) {
+      return res.status(400).json({
+        ok: false,
+        message: "Uuppssss!! Something goes wrong!",
       });
     }
+    res.status(200).json({
+      ok: true,
+      data: newPerson,
+    });
+
   } catch (error) {
-    res.status(500).json({
+    console.log("Error: ", error);
+    return res.status(500).json({
       ok: false,
       message: "Oh Oooooohh!!! Something goes wrong",
     });
-    console.log("Error: ", error);
   }
 }
+
 
 export async function updatePerson(req, res) {
   const { id_person } = req.params;
   const { first_name, last_name, birth_date, tel_number, address } = req.body;
   try {
-    await Person.findOne({
-      where: {
-        ID_PERSON: id_person,
-      },
-    });
 
     const updatedPerson = await Person.update(
       {
@@ -106,6 +107,13 @@ export async function updatePerson(req, res) {
       }
     );
 
+    if(!updatePerson){
+      return res.status(400).json({
+        ok:false,
+        message: "Ups! Something goes wrong!"
+      });
+    };
+
     res.status(200).json({
       ok: true,
       message: "Person Updated",
@@ -113,7 +121,7 @@ export async function updatePerson(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       ok: false,
       message: "Oh oh!! Person not updated",
     });
