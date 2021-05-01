@@ -1,4 +1,4 @@
-require('./config/config.env');
+require('../config.env');
 import express, {json} from 'express';
 const app = express();
 

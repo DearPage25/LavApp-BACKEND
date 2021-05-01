@@ -47,8 +47,12 @@ const User = sequelize.define("USERS", {
     },
     ROLE: {
         type: Sequelize.TEXT,
+        isIn:[['ADMIN','EMP', 'SUP','CL']],
+        //ADMIN = ADMINISTRADOR
+        //EMP = EMPPLOYEE
+        //SUP = SUPERVISOR
+        //CL = CLIENTE
         defaultValue: "CL",
-
     }
 }, {
     schema: "LavApp Schema",

@@ -1,5 +1,6 @@
 import User from "../models/user-model";
 import bcrypt from "bcrypt";
+
 export async function createUser(req, res) {
   const {
     email,
@@ -10,6 +11,7 @@ export async function createUser(req, res) {
     is_admin,
     id_person,
     id_department,
+    role
   } = req.body;
   try {
     let newUser = await User.create({
@@ -22,6 +24,7 @@ export async function createUser(req, res) {
       IS_ADMIN: is_admin,
       ID_PERSON: id_person,
       ID_DEPARTMENT: id_department,
+      ROLE: role,
     }); 
     if (newUser) {
       return res.status(200).json({
@@ -98,7 +101,8 @@ export async function updateUser(req, res) {
     verified,
     is_admin,
     id_department,
-    is_active
+    is_active,
+    role
   } = req.body;
 
   try {
@@ -112,7 +116,8 @@ export async function updateUser(req, res) {
         VERIFIED: verified,
         IS_ADMIN: is_admin,
         ID_DEPARTMENT: id_department,
-        is_active
+        is_active,
+        ROLE: role
       },
       {
         returning: true,
