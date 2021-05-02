@@ -28,6 +28,7 @@ let verificaToken = (req, res, next) => {
 
 let verificaRole = (req, res, next) => {
     let{role} = req.body;
+    console.log(role);
     
     if (role === 'ADMIN'|| role === 'EMP' || role === 'SUP' || role === 'CLI') {
         next();

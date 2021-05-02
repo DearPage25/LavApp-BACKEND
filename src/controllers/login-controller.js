@@ -4,11 +4,11 @@ import { Op } from "sequelize";
 import jwt from 'jsonwebtoken';
 
 export async function Login(req, res) {
-    let { email, password, username } = req.body;
+    let { email, password } = req.body;
     try {
         const loginUser = await User.findOne({
             where: {
-                [Op.or]: [{ EMAIL: (!email) ? null : email }, { USERNAME: (!username) ? null : username }],
+                [Op.or]: [{ EMAIL: email }, { USERNAME: email }],
             }
         });
         if (!loginUser) {
