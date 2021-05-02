@@ -27,9 +27,6 @@ const User = sequelize.define("USERS", {
     VERIFIED:{
         type: Sequelize.BOOLEAN
     },
-    IS_ADMIN:{
-        type: Sequelize.BOOLEAN
-    },
     ID_PERSON:{
         type: Sequelize.BIGINT
     },
