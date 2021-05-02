@@ -8,7 +8,6 @@ export async function createUser(req, res) {
     password,
     is_employee,
     verified,
-    is_admin,
     id_person,
     id_department,
     role
@@ -21,7 +20,6 @@ export async function createUser(req, res) {
       PASSWORD: bcrypt.hashSync(password, 10),
       IS_EMPLOYEE: is_employee,
       VERIFIED: verified,
-      IS_ADMIN: is_admin,
       ID_PERSON: id_person,
       ID_DEPARTMENT: id_department,
       ROLE: role,
@@ -99,7 +97,6 @@ export async function updateUser(req, res) {
     password,
     is_employee,
     verified,
-    is_admin,
     id_department,
     is_active,
     role
@@ -114,7 +111,6 @@ export async function updateUser(req, res) {
         PASSWORD: password,
         IS_EMPLOYEE: is_employee,
         VERIFIED: verified,
-        IS_ADMIN: is_admin,
         ID_DEPARTMENT: id_department,
         is_active,
         ROLE: role

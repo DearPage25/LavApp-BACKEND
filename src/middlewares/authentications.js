@@ -29,7 +29,7 @@ let verificaToken = (req, res, next) => {
 let verificaRole = (req, res, next) => {
     let{role} = req.body;
     
-    if (role === 'ADMIN'|| role === 'EMP' || role === 'SUP') {
+    if (role === 'ADMIN'|| role === 'EMP' || role === 'SUP' || role === 'CLI') {
         next();
     } else {
         return res.json({
