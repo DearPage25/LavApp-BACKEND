@@ -2,6 +2,32 @@ import BillDetail from '../models/bill-detail-model';
 
 
 
+export async function getBillMain(req, res) {
+    let { id_bybill } = req.params;
+    try {
+        let bills = await BillDetail.findAll({
+            where: {
+                ID_BILL: id_bybill
+            }
+        });
+        if (!bills) {
+            return res.status(400).json({
+                ok: false,
+                message: "Uuppssss!! Something goes wrong!",
+            });
+        }
+        res.status(200).json({
+            ok: true,
+            data: bills,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            message: "Oh! Ohhh!! Something goes wrong!",
+        });
+    }
+}
 export async function createBillDetail(req, res) {
     let { id_bill,
         id_service_type,

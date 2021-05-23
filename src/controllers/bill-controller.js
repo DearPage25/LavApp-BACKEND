@@ -13,6 +13,35 @@
 import Bill from '../models/bill-model';
 
 
+export async function getBillByCustomer(req, res) {
+  let{id_billByCustomer} = req.params;
+  try {
+    let bills = await Bill.findAll({
+      where: {
+        CUSTOMER: id_billByCustomer
+      }
+    })
+    
+    if (!bills) {
+      return res.status(400).json({
+        ok: false,
+        message: "upps! Something goes wrong",
+      })
+    }
+    res.status(200).json({
+      ok: true,
+      data: bills
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      message: "Oh Oooooooohhhh!!! Something goes wrong",
+
+    });
+
+  }
+}
 
 export async function createBill(req, res) {
   let { customer, current_date,

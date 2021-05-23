@@ -30,10 +30,6 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     PROCESSING_TIME: {
         type: Sequelize.DATE,
     },
-    active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,   
-    }
 }, {
     schema: "LavApp Schema",
     tableName: "BILL_DETAIL",
