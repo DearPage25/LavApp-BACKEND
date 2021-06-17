@@ -6,7 +6,7 @@ const  sequelize = new Sequelize(
     'dp14',
     'dp14',
     {
-        host: 'mitechy.com',
+        host: 'api.mitechy.com',
         dialect: 'postgres',
         port: 5533,
         pool: {
