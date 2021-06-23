@@ -36,7 +36,7 @@ export async function Login(req, res) {
         console.log(error);
         res.status(500).json({
             ok: false,
-            message: "Oh Oooh! Something goes wrong!",
+            message: "Oh Oooh! Something went wrong!",
         });
     }
 
