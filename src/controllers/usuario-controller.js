@@ -67,7 +67,11 @@ export async function getOneUser(req, res) {
 }
 
 export async function getAllUser(req, res) {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    where: {
+      is_active: true
+    }
+  });
 
   try {
     if (!users) {
