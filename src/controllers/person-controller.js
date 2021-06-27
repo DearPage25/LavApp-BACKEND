@@ -52,7 +52,7 @@ export async function getAllPerson(req, res) {
 }
 
 export async function createPerson(req, res) {
-  const { first_name, last_name, birth_date, tel_number, address } = req.body;
+  let { first_name, last_name, birth_date, tel_number, address } = req.body;
   birth_date = Date.parse(birth_date);
   try {
     let newPerson = await Person.create({
