@@ -104,6 +104,10 @@ export async function updateUser(req, res) {
 
   try {
 
+    if (password) {
+      password = bcrypt.hashSync(password, 10);
+    }
+
     const updatedUser = await User.update(
       {
         EMAIL: email,
