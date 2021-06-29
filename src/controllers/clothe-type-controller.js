@@ -1,11 +1,10 @@
 import Clothe from '../models/clothe-type-model';
 
 export async function createClothe(req, res) {
-    let { clothe_type, notes } = req.body;
+    let { clothe_type,  } = req.body;
     try {
         let newClothe = await Clothe.create({
             CLOTHE_TYPE: clothe_type,
-            NOTES: notes,
         });
         await newClothe.save();
         if (!newClothe) {
@@ -84,7 +83,7 @@ export async function getOneClothe(req, res) {
 
 export async function updateClothe(req, res) {
     let { id_clothe_type } = req.params;
-    let { clothe_type, notes } = req.body;
+    let { clothe_type } = req.body;
 
 
     try {
@@ -92,7 +91,6 @@ export async function updateClothe(req, res) {
         const updatedClothe = await Clothe.update(
             {
                 CLOTHE_TYPE: clothe_type,
-                NOTES: notes
             },
             {
                 returning: true,

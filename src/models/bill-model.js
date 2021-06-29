@@ -32,7 +32,8 @@ const Bill = sequelize.define("BILL", {
     active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,   
-    }, employee: {
+    }, 
+    employee: {
         type: Sequelize.INTEGER,
     }
 },{

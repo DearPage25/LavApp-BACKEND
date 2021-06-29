@@ -11,9 +11,6 @@ const ClotheType = sequelize.define('clothe_type', {
     CLOTHE_TYPE: {
         type: Sequelize.TEXT,
     },
-    NOTES: {
-        type: Sequelize.TEXT,
-    },
     active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,   

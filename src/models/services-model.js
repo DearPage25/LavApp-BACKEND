@@ -12,9 +12,6 @@ const Services = sequelize.define('SERVICES', {
     SERVICE: {
         type: Sequelize.TEXT,
     },
-    DESCRIPTION: {
-        type: Sequelize.TEXT,
-    },
 },{
     schema: "LavApp Schema",
     tableName: "SERVICES",

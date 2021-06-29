@@ -3,13 +3,12 @@ import Service from '../models/services-model';
 
 
 export async function createServices(req, res) {
-    let { id_service, service, description } = req.body;
+    let { id_service, service} = req.body;
 
     try {
         let newServices = await Service.create({
             ID_SERVICE: id_service,
             SERVICE: service,
-            DESCRIPTION: description
         });
 
         if (!newServices) {
@@ -79,7 +78,7 @@ export async function getOneService(req, res) {
 
 export async function updateService(req, res) {
     const { id_service } = req.params;
-    let { id_s, service, description } = req.body;
+    let { id_s, service} = req.body;
 
     let checkId = await Service.findOne({
         where: {
@@ -98,8 +97,7 @@ export async function updateService(req, res) {
         let serviceUpdated = await Service.update(
             {
                 ID_SERVICE: id_s,
-                SERVICE: service,
-                DESCRIPTION: description
+                SERVICE: service, 
             },
             {
                 returning: true,
@@ -156,7 +154,7 @@ export async function deleteService(req, res) {
         console.log(error);
         return res.status(500).json({
             ok: false,
-            message: 'Oh ooohhh! Somethig goes wrong!'
+            message: 'Oh ooohhh! Somethig went wrong!'
         })
     }
 

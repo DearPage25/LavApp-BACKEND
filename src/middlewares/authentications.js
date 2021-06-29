@@ -7,9 +7,8 @@ import jwt from 'jsonwebtoken';
 //Verificar el token
 
 let verificaToken = (req, res, next) => {
-    let token = req.get('token');
-
-    jwt.verify(token, process.env.SEED, (err, decoded) => {
+    let token = req.get('authorization').split(" ");
+    jwt.verify(token[1], process.env.SEED, (err, decoded) => {
 
         if (err) {
             return res.status(401).json({
