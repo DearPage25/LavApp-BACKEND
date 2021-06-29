@@ -46,8 +46,8 @@ const Bill = sequelize.define("BILL", {
 Bill.hasMany(billDetail, {foreignKey: 'ID_BILL_DETAIL', sourceKey:'ID_BILL'});
 billDetail.belongsTo(Bill, {foreignKey: 'ID_BILL_DETAIL', sourceKey:'ID_BILL'});
 
-Bill.hasMany(User, {foreignKey: 'ID_USER', sorceKey: 'CUSTOMER'})
-User.belongsTo(Bill, {foreignKey: 'CUSTOMER', sorceKey: 'ID_USER'})
+// Bill.hasMany(User, {foreignKey: 'ID_USER', sorceKey: 'CUSTOMER'})
+// User.belongsTo(Bill, {foreignKey: 'CUSTOMER', sorceKey: 'ID_USER'})
 
 
 module.exports = Bill;
