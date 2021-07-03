@@ -23,7 +23,7 @@ const ClotheType = sequelize.define('clothe_type', {
     timestamps: false
 });
 
-ClotheType.hasMany(billDetail, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
-billDetail.belongsTo(ClotheType, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
+// ClotheType.hasMany(billDetail, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
+// billDetail.belongsTo(ClotheType, { foreignKey: 'ID_CLOTHE_TYPE', suorceKey: 'ID_CLOTHE_TYPE' });
 
 module.exports = ClotheType;

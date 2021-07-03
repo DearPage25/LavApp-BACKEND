@@ -1,4 +1,5 @@
 import User from '../models/user-model';
+import Person from '../models/person-model'
 import bcrypt from 'bcrypt';
 import { Op } from "sequelize";
 import jwt from 'jsonwebtoken';
@@ -9,6 +10,9 @@ export async function Login(req, res) {
         const loginUser = await User.findOne({
             where: {
                 [Op.or]: [{ EMAIL: email }, { USERNAME: email }],
+            },
+            include: {
+                model: Person
             }
         });
         if (!loginUser) {

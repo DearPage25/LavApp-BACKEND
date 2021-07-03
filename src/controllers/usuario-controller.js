@@ -13,6 +13,18 @@ export async function createUser(req, res) {
     role
   } = req.body;
   try {
+    const revisar  = await User.findOne({
+      where : {
+        ID_PERSON : id_person
+      }
+    });
+    if(revisar){
+      return res.status(400).json({
+        ok: false,
+        message:  "Ya existe un usuario asociado a ese id_person" ,
+      });
+    }
+
     let newUser = await User.create({
       // id_user,
       EMAIL: email,

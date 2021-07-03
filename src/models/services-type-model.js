@@ -3,6 +3,9 @@ import sequelize from '../database/database';
 
 import billDetail from './bill-detail-model'
 import Discount from './discount-model';
+import ClotheType from './clothe-type-model';
+import Services from './services-model';
+
 const ServicesType = sequelize.define("SERVICE_TYPE", {
     ID_SERVICE_TYPE: {
         type: Sequelize.BIGINT,
@@ -22,9 +25,8 @@ const ServicesType = sequelize.define("SERVICE_TYPE", {
     DISCOUNT: {
         type: Sequelize.SMALLINT
     },
-    active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,   
+    ID_CLOTHE_TYPE: {
+        type: Sequelize.INTEGER,
     }
     
 },{
@@ -33,12 +35,21 @@ const ServicesType = sequelize.define("SERVICE_TYPE", {
     timestamps: false
 });
 
-ServicesType.hasMany(billDetail,{foreignKey: 'ID_SERVICE_TYPE', sourceKey: 'ID_SERVICE_TYPE'});
-billDetail.belongsTo(ServicesType,{foreignKey: 'ID_SERVICE_TYPE', sourceKey: 'ID_SERVICE_TYPE'});
+ServicesType.hasOne(ClotheType, {foreignKey: 'ID_CLOTHE_TYPE', sourceKey: 'ID_CLOTHE_TYPE'});
+ClotheType.hasMany(ServicesType, {foreignKey: 'ID_CLOTHE_TYPE', sourceKey: 'ID_CLOTHE_TYPE'})
+// ServicesType.hasMany(billDetail, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
+// ServicesType.belongsTo(billDetail);
+ServicesType.hasOne(Services, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
+Services.hasMany(ServicesType, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
+
+// ServicesType.belongsTo(Services, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
 
 
-ServicesType.hasMany(Discount, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
-Discount.belongsTo(ServicesType, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
+// ServicesType.hasMany(billDetail,{foreignKey: 'ID_SERVICE_TYPE', sourceKey: 'ID_SERVICE_TYPE'});
+
+
+// ServicesType.hasMany(Discount, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
+// Discount.belongsTo(ServicesType, {foreignKey:'ID_SERVICE_TYPE', sourceKey:'ID_SERVICE_TYPE'});
 
 
 

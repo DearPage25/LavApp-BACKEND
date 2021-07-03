@@ -19,7 +19,7 @@ const Services = sequelize.define('SERVICES', {
     timestamps: false
 });
 
-Services.hasMany(ServicesType, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
-ServicesType.belongsTo(Services, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
+// Services.hasMany(ServicesType, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
+// ServicesType.belongsTo(Services, { foreignKey: 'ID_SERVICE', source: 'ID_SERVICES' });
 
 module.exports = Services;

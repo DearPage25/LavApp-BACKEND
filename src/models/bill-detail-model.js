@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import sequelize from '../database/database';
 import Rfid from './RFID-model';
+import ServicesType from './services-type-model';
+import Bill from './bill-model';
 const billDetail = sequelize.define('BILL_DETAIL', {
     ID_BILL_DETAIL: {
         type: Sequelize.BIGINT,
@@ -16,9 +18,6 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     },
     SERVICE_TYPE_PRICE: {
         type: Sequelize.NUMBER,
-    },
-    ID_CLOTHE_TYPE: {
-        type: Sequelize.BIGINT,
     },
     CURRENT_DEPT:{
         type: Sequelize.BIGINT,
@@ -36,7 +35,10 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     freezeTableName: true,
     timestamps: false
 });
+billDetail.belongsTo(ServicesType, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
+ServicesType.hasMany(billDetail, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
+// billDetail.hasMany(Rfid,   {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
+// Rfid.belongsTo(billDetail, {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
 
-billDetail.hasMany(Rfid,   {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
-Rfid.belongsTo(billDetail, {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
+
 module.exports = billDetail;

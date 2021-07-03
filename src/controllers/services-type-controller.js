@@ -1,13 +1,14 @@
 import ServicesType from '../models/services-type-model';
 
 export async function createServicesType(req, res) {
-    let { type, id_service, price, discount } = req.body;
+    let { type, id_service, price, discount, id_clothe_type } = req.body;
     try {
         let servicesT = await ServicesType.create({
             TYPE: type,
             ID_SERVICE: id_service,
             PRICE: price,
-            DISCOUNT: discount
+            DISCOUNT: discount,
+            ID_CLOTHE_TYPE: id_clothe_type
         
         });
         if (servicesT) {
@@ -75,13 +76,14 @@ export async function getOneServicesType(req, res) {
 }
 export async function updateServicesType(req, res) {
     let { id_servicetype } = req.params;
-    let { type, id_service, price, discount } = req.body;
+    let { type, id_service, price, discount, id_clothe_type } = req.body;
     try {
         let servicesT = await ServicesType.update({
             TYPE: type,
             ID_SERVICE: id_service,
             PRICE: price,
-            DISCOUNT: discount
+            DISCOUNT: discount,
+            ID_CLOTHE_TYPE: id_clothe_type
         }, {
             returning: true,
             where: {

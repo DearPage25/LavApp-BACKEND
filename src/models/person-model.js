@@ -34,9 +34,6 @@ const Person = sequelize.define("PERSON", {
 
 // Person.sync({force:true});
 
-Person.hasMany(User, { foreignKey: 'ID_PERSON', sourceKey: 'ID_PERSON' });
-User.belongsTo(Person, { foreignKey: 'ID_PERSON', sourceKey: 'ID_PERSON' });
-
 
 
 module.exports = Person;
