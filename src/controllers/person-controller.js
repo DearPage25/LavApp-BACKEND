@@ -74,7 +74,9 @@ export async function getOnePerson(req, res) {
 export async function getAllPerson(req, res) {
 
   try {
-    const persons = await Person.findAll();
+    const persons = await Person.findAll({
+      include: User
+    });
     if (!persons) {
       return res.status(400).json({
         ok: false,
@@ -155,7 +157,13 @@ export async function createPerson(req, res) {
 
 export async function updatePerson(req, res) {
   const { id_person } = req.params;
-  const { first_name, last_name, birth_date, tel_number, address } = req.body;
+  const { 
+    first_name, 
+    last_name, 
+    birth_date, 
+    tel_number, 
+    address 
+  } = req.body;
   try {
 
     const updatedPerson = await Person.update(
