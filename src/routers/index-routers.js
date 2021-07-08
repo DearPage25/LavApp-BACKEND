@@ -11,5 +11,6 @@ app.use(require ('./bill-routers'));
 app.use(require ('./bill-detail-routers'));
 app.use(require ('./services-type-routers'));
 app.use(require ('./view-routers'));
+app.use(require ('./entrance-routers'));
 
 module.exports = app;
