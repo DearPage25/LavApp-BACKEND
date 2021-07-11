@@ -16,6 +16,9 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     ID_SERVICE_TYPE: {
         type: Sequelize.BIGINT,
     },
+    ID_SERVICES_TYPE: {
+        type: [Sequelize.BIGINT],
+    },
     SERVICE_TYPE_PRICE: {
         type: Sequelize.NUMBER,
     },
@@ -36,6 +39,8 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     timestamps: false
 });
 billDetail.belongsTo(ServicesType, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
+billDetail.belongsTo(Rfid, {foreignKey: 'ID_BILL_DETAIL', sourceKey: 'ID_BILL_DETAIL'});
+Rfid.hasOne(billDetail, {foreignKey: 'ID_BILL_DETAIL', sourceKey: 'ID_BILL_DETAIL'});
 ServicesType.hasMany(billDetail, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
 // billDetail.hasMany(Rfid,   {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )
 // Rfid.belongsTo(billDetail, {foreignKey: 'ID_BILL_DETAIL', source: 'ID_BILL_DETAIL'} )

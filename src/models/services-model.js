@@ -12,6 +12,9 @@ const Services = sequelize.define('SERVICES', {
     SERVICE: {
         type: Sequelize.TEXT,
     },
+    DEP_PROCESS:{
+        type: Sequelize.BIGINT,
+    },
 },{
     schema: "LavApp Schema",
     tableName: "SERVICES",

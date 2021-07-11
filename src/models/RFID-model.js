@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import sequelize from '../database/database';
-
+import billDetail from './bill-detail-model';
 
 const Rfid = sequelize.define("RFID", {
     ID_RFID: {
@@ -12,7 +12,7 @@ const Rfid = sequelize.define("RFID", {
     DATE: {
         type: Sequelize.DATE,
     },
-    ID_CURRENT_DETP: {
+    ID_CURRENT_DEPT: {
         type: Sequelize.BIGINT,
     },
     IS_ACTIVE: {
@@ -35,4 +35,5 @@ const Rfid = sequelize.define("RFID", {
     freezeTableName: true,
     timestamps: false
 });
+
 module.exports = Rfid;

@@ -2,21 +2,23 @@ import Sequelize from 'sequelize';
 import sequelize from '../database/database';
 
 const Config = sequelize.define('configurations', {
-    id_configuration: {
+    ID_CONFIGURATION: {
         type: Sequelize.BIGINT,
-        primarykey: true,
+        primaryKey: true
     },
-    itbis: {
+    ITBIS: {
         type: Sequelize.SMALLINT,
-    }
-    ,
+    },
+    sequence: {
+        type: [Sequelize.BIGINT],
+    },
     active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,   
     }
 },{
     schema: "LavApp Schema",
-    tableName: "PERSON",
+    tableName: "CONFIGURATIONS",
     freezeTableName: true,
     timestamps: false
 });
