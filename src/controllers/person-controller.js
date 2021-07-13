@@ -4,6 +4,7 @@ import sequelize from '../database/database';
 import User from '../models/user-model';
 import bcrypt from "bcrypt";
 
+
 export async function getOnePersonByTel(req, res) {
   const{tel_number} = req.params;
   
@@ -157,20 +158,25 @@ export async function createPerson(req, res) {
 
 export async function updatePerson(req, res) {
   const { id_person } = req.params;
-  const { 
+
+  let { 
     first_name, 
     last_name, 
-    birth_date, 
     tel_number, 
-    address 
+    address,
+    id_user,
+    password, 
   } = req.body;
+  
+  if (password) {
+    password = bcrypt.hashSync(password, 10);
+  }
   try {
 
     const updatedPerson = await Person.update(
       {
         FIRST_NAME: first_name,
         LAST_NAME: last_name,
-        BIRTH_DATE: birth_date,
         TEL_NUMBER: tel_number,
         ADDRESS: address,
       },
@@ -182,23 +188,35 @@ export async function updatePerson(req, res) {
       }
     );
 
-    if (!updatePerson) {
+    const updateUser = await User.update(
+      {
+        PASSWORD: password 
+      },{
+        returning: true,
+        where:{
+          ID_USER: id_user
+        }
+      }
+    )
+
+    if (!updatedPerson || !updateUser) {
       return res.status(400).json({
         ok: false,
-        message: "Ups! Something goes wrong!"
+        message: "Ups! Something went wrong!"
       });
     };
+
 
     res.status(200).json({
       ok: true,
       message: "Person Updated",
-      data: updatedPerson,
+      data: updatedPerson[1][0],
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
       ok: false,
-      message: "Oh oh!! Person not updated",
+      message: "Oh oh!! Person or User not updated",
     });
   }
 }
