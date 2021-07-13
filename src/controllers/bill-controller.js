@@ -130,6 +130,7 @@ export async function createBill(req, res) {
         let newBillDetail = await BillDetail.create({
           ID_BILL: newBill.dataValues.ID_BILL,
           ID_SERVICE_TYPE: billDetail[i].id_service_type,
+          ID_SERVICES_TYPE: billDetail[i].id_services_type,
           SERVICE_TYPE_PRICE: billDetail[i].service_type_price,
           ID_CLOTHE_TYPE: billDetail[i].id_clothe_type,
           CURRENT_DEPT: billDetail[i].current_dept,
