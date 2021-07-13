@@ -18,6 +18,8 @@ import User from '../models/user-model'
 import sequelize from '../database/database'
 import Person from '../models/person-model'
 import Clothe from '../models/clothe-type-model'
+import Config from '../models/configurations-models';
+
 ///FALTA MOSTRAR ALGUNOS DATOS, POR LO VISTO ES BUENO
 ///CREAR UN VIEW EN LA BASE DE DATOS Y CREAR UN MODELON EN BASE A ESTO
 export async function getBillByCustomer(req, res) {
@@ -122,6 +124,8 @@ export async function createBill(req, res) {
 
     // await newBill.save();
     let Details = [];
+    configSeq = configSeq.dataValues.sequence;
+    const firstSeq = configSeq[0];
 
     for (let i = 0; i < billDetail.length; i++) {
       console.log(newBill.dataValues.ID_BILL);
@@ -133,7 +137,7 @@ export async function createBill(req, res) {
           ID_SERVICES_TYPE: billDetail[i].id_services_type,
           SERVICE_TYPE_PRICE: billDetail[i].service_type_price,
           ID_CLOTHE_TYPE: billDetail[i].id_clothe_type,
-          CURRENT_DEPT: billDetail[i].current_dept,
+          CURRENT_DEPT: firstSeq,
           LAST_UPDATE: billDetail[i].last_update,
           PROCESSING_TIME: billDetail[i].processing_time,
         },{transaction});
