@@ -210,10 +210,7 @@ export async function updatePerson(req, res) {
     res.status(200).json({
       ok: true,
       message: "Person Updated",
-      data: {
-        dataPerson: updatedPerson,
-        dataUser: updateUser
-      },
+      data: updatedPerson[1][0],
     });
   } catch (error) {
     console.log(error);
