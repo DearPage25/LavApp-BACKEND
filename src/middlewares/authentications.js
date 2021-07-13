@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 let verificaToken = (req, res, next) => {
     let token = req.get('authorization').split(" ");
     jwt.verify(token[1], process.env.SEED, (err, decoded) => {
-
+        
         if (err) {
             return res.status(401).json({
                 ok: false,

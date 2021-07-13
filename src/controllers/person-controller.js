@@ -157,12 +157,15 @@ export async function createPerson(req, res) {
 
 export async function updatePerson(req, res) {
   const { id_person } = req.params;
+
   const { 
     first_name, 
     last_name, 
     birth_date, 
     tel_number, 
-    address 
+    address,
+    idUser,
+    password, 
   } = req.body;
   try {
 
@@ -182,23 +185,37 @@ export async function updatePerson(req, res) {
       }
     );
 
-    if (!updatePerson) {
+    const updateUser = await User.update(
+      {
+        PASSWORD: password 
+      },{
+        returning: true,
+        where:{
+          ID_USER: idUser
+        }
+      }
+    )
+
+    if (!updatePerson || !updateUser) {
       return res.status(400).json({
         ok: false,
-        message: "Ups! Something goes wrong!"
+        message: "Ups! Something went wrong!"
       });
     };
 
     res.status(200).json({
       ok: true,
       message: "Person Updated",
-      data: updatedPerson,
+      data: {
+        updatedPerson,
+        updateUser
+      },
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
       ok: false,
-      message: "Oh oh!! Person not updated",
+      message: "Oh oh!! Person or User not updated",
     });
   }
 }
