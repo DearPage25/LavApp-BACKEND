@@ -103,7 +103,7 @@ export async function createPerson(req, res) {
     birth_date,
     tel_number,
     address,
-    userData,
+    USER,
   } = req.body;
   const transaction = await sequelize.transaction();
   try {
@@ -117,14 +117,14 @@ export async function createPerson(req, res) {
 
 
     let newUser = await User.create({
-      EMAIL: userData.email,
-      USERNAME: userData.username,
-      PASSWORD: bcrypt.hashSync(userData.password, 10),
-      IS_EMPLOYEE: userData.is_employee,
-      VERIFIED: userData.verified,
+      EMAIL: USER.email,
+      USERNAME: USER.username,
+      PASSWORD: bcrypt.hashSync(USER.password, 10),
+      IS_EMPLOYEE: USER.is_employee,
+      VERIFIED: USER.verified,
       ID_PERSON: newPerson.dataValues.ID_PERSON,
-      ID_DEPARTMENT: userData.id_department,
-      ROLE: userData.role,
+      ID_DEPARTMENT: USER.id_department,
+      ROLE: USER.role,
     }, { transaction })
 
     await transaction.commit();
