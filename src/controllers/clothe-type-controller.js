@@ -1,4 +1,5 @@
 import Clothe from '../models/clothe-type-model';
+import ServicesType from '../models/services-type-model';
 
 export async function createClothe(req, res) {
     let { clothe_type,  } = req.body;
@@ -31,7 +32,9 @@ export async function createClothe(req, res) {
 export async function getAllClothe(req, res) {
 
     try {
-        let allClothe = await Clothe.findAll();
+        let allClothe = await Clothe.findAll({
+            include: [ServicesType]
+        });
         if (!allClothe) {
             return res.status(400).json({
                 ok: false,
