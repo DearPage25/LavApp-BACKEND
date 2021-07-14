@@ -140,7 +140,7 @@ export async function createBill(req, res) {
           ID_CLOTHE_TYPE: billDetail[i].id_clothe_type,
           CURRENT_DEPT: firstSeq,
           LAST_UPDATE: billDetail[i].last_update,
-          PROCESSING_TIME: billDetail[i].processing_time,
+          // PROCESSING_TIME: billDetail[i].processing_time,
         },{transaction});
 
         Details.push(newBillDetail.dataValues);
