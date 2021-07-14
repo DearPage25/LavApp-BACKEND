@@ -124,6 +124,7 @@ export async function createBill(req, res) {
 
     // await newBill.save();
     let Details = [];
+    let configSeq = await Config.findOne();
     configSeq = configSeq.dataValues.sequence;
     const firstSeq = configSeq[0];
 
