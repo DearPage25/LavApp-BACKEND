@@ -1,5 +1,5 @@
 import ServicesType from '../models/services-type-model';
-
+import ClotheType  from '../models/clothe-type-model';
 export async function createServicesType(req, res) {
     let { type, id_service, price, discount, id_clothe_type } = req.body;
     try {
@@ -27,9 +27,13 @@ export async function createServicesType(req, res) {
 }
 export async function getAllServicesType(req, res) {
 
-    const servicesT = await ServicesType.findAll();
-
+    
     try {
+        const servicesT = await ServicesType.findAll({
+            include:{
+                model: ClotheType
+            }
+        });
         if (!servicesT) {
             return res.status(400).json({
                 ok: false,
