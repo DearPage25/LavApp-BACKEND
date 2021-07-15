@@ -60,6 +60,8 @@ export async function getBillByCustomer(req, res) {
                 model: Clothe,
                 attributes: ['CLOTHE_TYPE']
               },
+            },{
+              model: Department
             }
           ]
         },

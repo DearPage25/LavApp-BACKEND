@@ -38,6 +38,7 @@ const billDetail = sequelize.define('BILL_DETAIL', {
     freezeTableName: true,
     timestamps: false
 });
+
 billDetail.belongsTo(ServicesType, {foreignKey: 'ID_SERVICE_TYPE', source: 'ID_SERVICE_TYPE'});
 billDetail.belongsTo(Rfid, {foreignKey: 'ID_BILL_DETAIL', sourceKey: 'ID_BILL_DETAIL'});
 Rfid.hasOne(billDetail, {foreignKey: 'ID_BILL_DETAIL', sourceKey: 'ID_BILL_DETAIL'});
