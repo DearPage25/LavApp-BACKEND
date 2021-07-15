@@ -16,6 +16,10 @@ const Departament = sequelize.define("DEPARTMENT", {
     },
     DEPARTMENT_DESCR: {
         type: Sequelize.TEXT
+    },
+    USE_SCANNER: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,   
     }
 },{
     schema: "LavApp Schema",

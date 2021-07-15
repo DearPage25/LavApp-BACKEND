@@ -1,4 +1,6 @@
 import User from "../models/user-model";
+import Person from "../models/person-model";
+
 import bcrypt from "bcrypt";
 
 export async function createUser(req, res) {
@@ -79,7 +81,9 @@ export async function getOneUser(req, res) {
 }
 
 export async function getAllUser(req, res) {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    include: Person
+  });
 
   try {
     if (!users) {

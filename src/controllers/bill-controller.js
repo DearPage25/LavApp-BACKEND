@@ -129,7 +129,7 @@ export async function createBill(req, res) {
     const firstSeq = configSeq[0];
 
     for (let i = 0; i < billDetail.length; i++) {
-      console.log(newBill.dataValues.ID_BILL);
+      // console.log(newBill.dataValues.ID_BILL);
       try {
 
         let newBillDetail = await BillDetail.create({
@@ -144,7 +144,7 @@ export async function createBill(req, res) {
         },{transaction});
 
         Details.push(newBillDetail.dataValues);
-        console.log(Details);
+        // console.log(Details);
       } catch (error) {
         
         await transaction.rollback();
